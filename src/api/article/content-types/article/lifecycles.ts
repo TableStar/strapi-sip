@@ -1,3 +1,5 @@
+import { emailTemplate } from "../../../../../helper/emailContent";
+
 export default {
   async afterCreate(event) {
     const { result } = event; 
@@ -20,16 +22,7 @@ export default {
       const unsubscribeLink = `${serverAddress}/api/email/unsub?token=${token}`;
 
       // Prepare the email content
-      const emailHtmlContent = `
-        <h1>A new Blogpost has been created<h1/>
-        <br/>
-        <h2>${title}</h2>
-        <p>${description}</p>
-        <br/>
-        <br/>
-        <p>If you no longer wish to receive notifications, click the link below to unsubscribe:</p>
-        <a href="${unsubscribeLink}">Unsubscribe</a>
-      `;
+      const emailHtmlContent = emailTemplate(title,description,unsubscribeLink)
 
       try {
       
