@@ -28,7 +28,7 @@ export default {
       
         await strapi.plugin('email').service('email').send({
           to: email,
-          from: 'your-email@example.com', 
+          from: process.env.SMTP_USER||"info@sip-jkt.com", 
           subject: `New Article Published: ${title}`,
           html: emailHtmlContent,
         });
@@ -36,6 +36,8 @@ export default {
         strapi.log.info('Email sent successfully to:', email);
       } catch (error) {
         strapi.log.error('Error sending email to:', email, error);
+        console.log(error);
+        
       }
     }
   },
