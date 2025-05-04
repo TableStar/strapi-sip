@@ -42,7 +42,7 @@ export default {
 
       return strapi
         .plugin("email")
-        .service(email)
+        .service("email")
         .send({
           to: email,
           from: process.env.SMTP_USER || "info@sip-jkt.com",
